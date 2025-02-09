@@ -29,7 +29,7 @@ The app utilizes precomputed step detection data:
 
 Since the full dataset is large, only a small subset is included to maintain simplicity and efficiency.
 
-## Challenges (With a Touch of Humor)
+## Challenges :)
 
 1. **Setting Up the Environment**: Dealing with compatibility issues... Classic Flutter struggles! 🙃
 2. **Package Woes**: Some packages refused to cooperate—especially `data_table_2` and `syncfusion_flutter_datagrid` with different Flutter versions (I must blame my old standard laptop as well 🙃).
