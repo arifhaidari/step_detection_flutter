@@ -41,20 +41,15 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => MeasurementListScreen()));
               },
             ),
-             const SizedBox(height: 20),
-            _buildButton(
-              context,
-              icon: LucideIcons.server,
-              label: "Raw Data",
-              onPressed: () => showNotImplementedToast(context),
-            ),
-             const SizedBox(height: 20),
-            _buildButton(
-              context,
-              icon: LucideIcons.server,
-              label: "Sensor Data Visualization",
-              onPressed: () => showNotImplementedToast(context),
-            ),
+            //  const SizedBox(height: 20),
+            // _buildButton(
+            //   context,
+            //   icon: LucideIcons.server,
+            //   label: "Raw Data",
+            //   onPressed: () {
+            //     // Navigator.push(context, MaterialPageRoute(builder: (context) => SensorDataScreen()));
+            //   },
+            // ),
             const SizedBox(height: 20),
             _buildButton(
               context,

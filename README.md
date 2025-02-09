@@ -15,3 +15,15 @@ The function will take the sensor data and measurement ID, divide the data into 
 Plot the Downsampled Data:
 
 Use the downsampled data (with 10 points) for the chart.
+
+---
+
+citation and sources that i learned:
+https://api.flutter.dev/flutter/dart-math/dart-math-library.html
+
+https://fluttergems.dev/math-utilities/
+
+challenges:
+setting up the environemnt and dealing with compatibility issue (typical flutter things)
+was not able use packages such as:
+data_table_2 and syncfusion_flutter_datagrid

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For loading JSON from assets
 import 'package:fl_chart/fl_chart.dart'; // For the chart
-import 'package:step_detection_flutter/widgets/step_count_bar.dart';
+import 'package:step_detection_flutter/widgets/down_sample_step_count.dart';
+// import 'package:step_detection_flutter/widgets/step_count_bar.dart';
 import 'dart:convert'; // For JSON decoding
 import '../data/measurement_model.dart';
 import '../data/sensor_data_model.dart';
-import '../utils/down_sampling_sensor_data.dart';
-import '../widgets/step_count_bar.dart';
+import '../widgets/down_sampling_sensor_data.dart';
+// import '../widgets/step_count_bar.dart';
 
 class MeasurementDetailScreen extends StatefulWidget {
   final Measurement measurement;
@@ -18,7 +19,7 @@ class MeasurementDetailScreen extends StatefulWidget {
 }
 
 class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
-  String selectedSensorType = 'Accelerometer';
+  String selectedSensorType = 'Step Count';
   int selectedDataPoints = 25;
   List<SensorData> sensorData = [];
 
@@ -49,7 +50,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
       );
     }
 
-    // Determine sensor keys
+    // sensor keys
     List<String> sensorKeys =
         selectedSensorType == 'Accelerometer' ? ['ax', 'ay', 'az'] : ['gx', 'gy', 'gz'];
 
@@ -70,11 +71,13 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
               children: [
                 DropdownButton<String>(
                   value: selectedSensorType,
-                  items: ['Accelerometer', 'Gyroscope']
+                  items: ['Step Count', 'Accelerometer', 'Gyroscope']
                       .map((type) => DropdownMenuItem(value: type, child: Text(type)))
                       .toList(),
                   onChanged: (value) {
-                    setState(() => selectedSensorType = value!);
+                    setState(() {
+                      selectedSensorType = value!;
+                    });
                   },
                 ),
                 DropdownButton<int>(
@@ -89,29 +92,42 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 20),
 
             // Line Chart
             SizedBox(
-              height: 300,
+              height: 280,
+              width: double.infinity, // Full width
               child: LineChart(
                 LineChartData(
                   gridData: FlGridData(show: true),
-                  titlesData: FlTitlesData(show: true),
+                  titlesData: FlTitlesData(
+                    topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                   
+
+                  ),
                   borderData: FlBorderData(show: true),
-                  lineBarsData: [
-                    for (int i = 0; i < 3; i++)
-                      LineChartBarData(
-                        spots: downsampledSeries[i],
-                        isCurved: true,
-                        color: [Colors.blue, Colors.green, Colors.red][i],
-                      ),
-                  ],
+                  lineBarsData: selectedSensorType == 'Step Count'
+                      ? [
+                          LineChartBarData(
+                            spots: downsampleStepCounts(sensorData, selectedDataPoints)[0],
+                            isCurved: true,
+                            color: Colors.orange, // Color for the step count line
+                          ),
+                        ]
+                      : [
+                          for (int i = 0; i < 3; i++)
+                            LineChartBarData(
+                              spots: downsampledSeries[i],
+                              isCurved: true,
+                              color: [Colors.blue, Colors.green, Colors.red][i],
+                            ),
+                        ],
                 ),
               ),
             ),
-
-            SizedBox(height: 16),
+            SizedBox(height: 20),
 
             // Measurement Summary
             Table(
@@ -151,4 +167,6 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
       ],
     );
   }
+
+ 
 }

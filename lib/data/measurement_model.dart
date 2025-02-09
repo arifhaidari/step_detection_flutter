@@ -16,8 +16,6 @@ class Measurement {
     duration = endTime.difference(startTime); // Calculate duration
   }
 
-  // String get formattedStartTime => startTime.toIso8601String();
-  // String get formattedEndTime => endTime.toIso8601String();
   String get formattedDuration => '${duration.inSeconds} seconds';
 
   factory Measurement.fromJson(Map<String, dynamic> json) {
