@@ -1,16 +1,17 @@
-# step_detection_flutter
+# Step Detection - Flutter (Under Development)
 
-A new Flutter project.
+Visualisation:
+To address the issue of too many points and improve the readability of the chart, we can downsample the data by dividing the entire series into 10 equal segments, computing the average of the sensor data (az, for example) in each segment, and then using the average of the time for each segment as the X-axis.
 
-## Getting Started
+Approach:
+Divide the Data into 10 Equal Parts:
 
-This project is a starting point for a Flutter application.
+If we have N data points, divide them into 10 equal parts.
+For each part, compute the average of the sensor data (az in this case).
+Also, compute the average time for each segment, or pick the end time of each segment.
+Create a Function to Downsample the Data:
 
-A few resources to get you started if this is your first Flutter project:
+The function will take the sensor data and measurement ID, divide the data into 10 parts, and return the average values.
+Plot the Downsampled Data:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Use the downsampled data (with 10 points) for the chart.
