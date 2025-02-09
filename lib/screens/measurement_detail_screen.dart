@@ -12,9 +12,10 @@ import '../widgets/down_sampling_sensor_data.dart';
 class MeasurementDetailScreen extends StatefulWidget {
   final Measurement measurement;
 
-  MeasurementDetailScreen({required this.measurement});
+  const MeasurementDetailScreen({super.key, required this.measurement});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MeasurementDetailScreenState createState() => _MeasurementDetailScreenState();
 }
 
@@ -45,8 +46,8 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
   Widget build(BuildContext context) {
     if (sensorData.isEmpty) {
       return Scaffold(
-        appBar: AppBar(title: Text('Measurement Details')),
-        body: Center(child: CircularProgressIndicator()),
+        appBar: AppBar(title: const Text('Measurement Details')),
+        body: const Center(child: CircularProgressIndicator()),
       );
     }
 
@@ -59,9 +60,9 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
         sensorKeys.map((key) => downsampleData(sensorData, key, selectedDataPoints)).toList();
 
     return Scaffold(
-      appBar: AppBar(title: Text('Measurement Details')),
+      appBar: AppBar(title: const Text('Measurement Details')),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -92,7 +93,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // Line Chart
             SizedBox(
@@ -104,8 +105,6 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                   titlesData: FlTitlesData(
                     topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
                     bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                   
-
                   ),
                   borderData: FlBorderData(show: true),
                   lineBarsData: selectedSensorType == 'Step Count'
@@ -127,7 +126,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // Measurement Summary
             Table(
@@ -167,6 +166,4 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
       ],
     );
   }
-
- 
 }

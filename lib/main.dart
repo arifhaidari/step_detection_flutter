@@ -14,7 +14,7 @@ class StepDetectionApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         brightness: Brightness.dark,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

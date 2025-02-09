@@ -6,6 +6,8 @@ import '../screens/measurement_detail_screen.dart'; // Screen for showing measur
 class MeasurementListScreen extends StatelessWidget {
   final DataProvider dataProvider = DataProvider();
 
+  MeasurementListScreen({super.key});
+
   Future<List<Measurement>> fetchMeasurements() async {
     return await dataProvider.getMeasurements();
   }
@@ -15,7 +17,6 @@ class MeasurementListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Measurements'),
-        backgroundColor: Colors.teal,
       ),
       body: FutureBuilder<List<Measurement>>(
         future: fetchMeasurements(),
@@ -76,15 +77,15 @@ class MeasurementListScreen extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.directions_walk, color: Colors.green, size: 18),
-                              SizedBox(width: 5),
+                              const Icon(Icons.directions_walk, color: Colors.green, size: 18),
+                              const SizedBox(width: 5),
                               Text('Left: ${measurement.leftSteps}'),
                             ],
                           ),
                           Row(
                             children: [
-                              Icon(Icons.directions_walk, color: Colors.blue, size: 18),
-                              SizedBox(width: 5),
+                              const Icon(Icons.directions_walk, color: Colors.blue, size: 18),
+                              const SizedBox(width: 5),
                               Text('Right: ${measurement.rightSteps}'),
                             ],
                           ),

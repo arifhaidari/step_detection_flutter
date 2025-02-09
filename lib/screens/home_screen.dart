@@ -3,6 +3,8 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:step_detection_flutter/screens/measurement_list_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   void showNotImplementedToast(BuildContext context) {
     const snackBar = SnackBar(
       content: Text("This feature is not implemented yet!"),
@@ -38,7 +40,8 @@ class HomeScreen extends StatelessWidget {
               icon: LucideIcons.fileJson,
               label: "JSON File",
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MeasurementListScreen()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MeasurementListScreen()));
               },
             ),
             //  const SizedBox(height: 20),
@@ -70,7 +73,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildButton(BuildContext context, {
+  Widget _buildButton(
+    BuildContext context, {
     required IconData icon,
     required String label,
     required VoidCallback onPressed,
