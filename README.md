@@ -1,51 +1,58 @@
 # Step Detection - Flutter (Under Development)
 
-Approaches and Visualisation:
-To address the issue of too many points and improve the readability of the chart, we can downsample the data by dividing the entire series into (10 for example) equal segments, computing the average of the sensor data (az, for example) in each segment, and then using the average of the time for each segment as the X-axis.
+## Overview
 
-Step count:
-calculating the az spikes (based on a threshold) in real time in order to detect the steps and its counts.
+This Flutter app is designed to detect and count steps using accelerometer data. The app also visualizes the sensor data in a readable format by applying data downsampling techniques.
 
-for all visualisation I did down sampled the data points taking the average of segment or a window in order to be nicely readable and understandable for every kinds of users.
+## Features
+
+- **Step Counting**: Detects steps by identifying spikes in the accelerometer's Z-axis (az) based on a threshold.
+- **Data Visualization**: Downsamples sensor data by segmenting it into equal parts and averaging values for improved readability.
+- **Lightweight Backend Data**: Uses a small subset of the original dataset to keep the app lightweight, as the full data science model has not been deployed via an API.
+- **Flutter-Based UI**: Interactive charts and tables to display step counts and sensor data trends.
+
+## Approach & Data Visualization
+
+To improve chart readability and manage large amounts of sensor data, the app segments the data into equal parts (e.g., 10 segments). It then:
+
+- Computes the average of sensor values (e.g., az) for each segment.
+- Uses the average time of each segment as the X-axis for visualization.
+
+This method ensures a smooth and easily interpretable graphical representation for all users.
+
+## Data Used
+
+The app utilizes precomputed step detection data:
+
+- `calculated_steps.json`
+- `input_data.json`
+
+Since the full dataset is large, only a small subset is included to maintain simplicity and efficiency.
+
+## Challenges (With a Touch of Humor)
+
+1. **Setting Up the Environment**: Dealing with compatibility issues... Classic Flutter struggles! 🙃
+2. **Package Woes**: Some packages refused to cooperate—especially `data_table_2` and `syncfusion_flutter_datagrid` with different Flutter versions (I must blame my old standard laptop as well 🙃).
+3. **Step Counter Logic**: What’s easy in Python (import a package and call a function) turned into a monster of a task in Flutter. Appreciation for Python just skyrocketed! 🚀
+   - Check out the step counting logic: [step_counter.dart](https://github.com/arifhaidari/step_detection_flutter/blob/main/lib/utils/step_counter.dart)
+
+For more developer struggles, visit the data science (part of this) project: [Step Detection Data Science](https://github.com/arifhaidari/step_detection_data_science/tree/main)
+
+## Data Science Component
+
+The core logic and experiments for step detection are documented in the data science counterpart of this project:
+🔗 [Step Detection Data Science](https://github.com/arifhaidari/step_detection_data_science/tree/main)
+
+## Citations & Learning Resources
+
+- [Dart Math Library](https://api.flutter.dev/flutter/dart-math/dart-math-library.html)
+- [Flutter Gems - Math Utilities](https://fluttergems.dev/math-utilities/)
+
+## Installation
+
+You can install the app by downloading the APK:
+[📥 Download APK](https://github.com/arifhaidari/step_detection_flutter/tree/main/apk) (Located in `build/app/outputs/flutter-apk/`)
 
 ---
 
-citation and sources that i learned:
-https://api.flutter.dev/flutter/dart-math/dart-math-library.html
-
-https://fluttergems.dev/math-utilities/
-
----
-
-Data science part of this project:
-https://github.com/arifhaidari/step_detection_data_science/tree/main
-
----
-
-Data used in the backend:
-I have used a small part (so the app to be light and simplicity) of the data since it was huge since the data science project (ML model) was not deployed to use API to fetch all data.
-calculated_steps.json
-input_data.json
-
----
-
-challenges:
-write this part a little bit with humor:
-setting up the environemnt and dealing with compatibility issue (typical flutter things)
-was not able use packages especially with data_table_2 and syncfusion_flutter_datagrid and different version of flutter.
-
-the second challenge was step counter - the logic is very simple in python (just importing the packages) but it is a hell of work building from scratch - time to appreciate python :)
-https://github.com/arifhaidari/step_detection_flutter/blob/main/lib/utils/step_counter.dart
-
-for more challenges meet me here:
-https://github.com/arifhaidari/step_detection_data_science/tree/main
-
----
-
-a comprehensive documentation will be available in the data science part of this project which is available in this link:
-https://github.com/arifhaidari/step_detection_data_science/tree/main
-
----
-
-apk to install:
-you can get the apk in build/app/outputs/flutter-apk/
+For full documentation, check out the data science part of this project: [Documentation](https://github.com/arifhaidari/step_detection_data_science/tree/main)
