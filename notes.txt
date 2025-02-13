@@ -17,3 +17,8 @@ o Implement a graphical representation of step counts.
 o Display a time-series plot of the accelerometer and gyroscope values.
 4. Additional Features (Optional):
 o Implement a filter/search feature to find specific measurements. o Export results as CSV or JSON.
+
+---
+
+Additional notes:
+pluto_grid: ^7.0.2

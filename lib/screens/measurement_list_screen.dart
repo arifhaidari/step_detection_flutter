@@ -66,7 +66,7 @@ class MeasurementListScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
                         'Start: ${measurement.formattedStartTime}\nEnd: ${measurement.formattedEndTime}',
-                        style: const TextStyle(fontSize: 14, color: Colors.grey),
+                        style: const TextStyle(fontSize: 15, color: Colors.lightGreenAccent),
                       ),
                     ),
                     trailing: SizedBox(
@@ -77,16 +77,16 @@ class MeasurementListScreen extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              const Icon(Icons.directions_walk, color: Colors.green, size: 18),
+                              const Icon(Icons.directions_walk, color: Colors.green, size: 20),
                               const SizedBox(width: 5),
                               Text('Left: ${measurement.leftSteps}'),
                             ],
                           ),
                           Row(
                             children: [
-                              const Icon(Icons.directions_walk, color: Colors.blue, size: 18),
+                              const Icon(Icons.directions_walk, color: Colors.blue, size: 20),
                               const SizedBox(width: 5),
-                              Text('Right: ${measurement.rightSteps}'),
+                              Text('Right: ${measurement.rightSteps}', style: const TextStyle(fontSize: 14),),
                             ],
                           ),
                         ],

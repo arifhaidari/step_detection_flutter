@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For loading JSON from assets
 import 'package:fl_chart/fl_chart.dart'; // For the chart
 import 'package:step_detection_flutter/widgets/down_sample_step_count.dart';
-// import 'package:step_detection_flutter/widgets/step_count_bar.dart';
 import 'dart:convert'; // For JSON decoding
 import '../data/measurement_model.dart';
 import '../data/sensor_data_model.dart';
 import '../widgets/down_sampling_sensor_data.dart';
-// import '../widgets/step_count_bar.dart';
 
 class MeasurementDetailScreen extends StatefulWidget {
   final Measurement measurement;
@@ -157,11 +155,11 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+          child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.lightGreenAccent)),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(value),
+          child: Text(value, style: const TextStyle(fontSize: 14, color: Colors.lightGreenAccent),),
         ),
       ],
     );

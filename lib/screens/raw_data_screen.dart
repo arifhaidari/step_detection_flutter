@@ -1,81 +1,119 @@
-// import 'package:flutter/material.dart';
-// import 'package:data_table_2/data_table_2.dart';
-// import 'package:step_detection_flutter/data/data_provider.dart';
-// import 'package:step_detection_flutter/data/sensor_data_model.dart';
+import 'package:flutter/material.dart';
+import 'package:pluto_grid/pluto_grid.dart';
+import 'package:step_detection_flutter/data/sensor_data_model.dart';
+import 'package:step_detection_flutter/utils/json_loader.dart';
 
-// class SensorDataScreen extends StatefulWidget {
-//   @override
-//   _SensorDataScreenState createState() => _SensorDataScreenState();
-// }
+class SensorDataTable extends StatefulWidget {
+  @override
+  _SensorDataTableState createState() => _SensorDataTableState();
+}
 
-// class _SensorDataScreenState extends State<SensorDataScreen> {
-//   late Future<List<SensorData>> futureSensorData;
-//   final DataProvider dataProvider = DataProvider();
+class _SensorDataTableState extends State<SensorDataTable> {
+  // List<PlutoColumn> columns = [];
+  // List<PlutoRow> rows = [];
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     futureSensorData = dataProvider.getSensorData();
-//   }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Sensor Data Table')),
+      body: FutureBuilder<List<SensorData>>(
+        future: JsonLoader.loadSensorData(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No data available'));
+          }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Sensor Data Table'),
-//       ),
-//       body: FutureBuilder<List<SensorData>>(
-//         future: futureSensorData,
-//         builder: (context, snapshot) {
-//           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return Center(child: CircularProgressIndicator());
-//           } else if (snapshot.hasError) {
-//             return Center(child: Text('Error: ${snapshot.error}'));
-//           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-//             return Center(child: Text('No data available'));
-//           } else {
-//             return SingleChildScrollView(
-//               scrollDirection: Axis.vertical,
-//               child: SingleChildScrollView(
-//                 scrollDirection: Axis.horizontal,
-//                 child: DataTable2(
-//                   columnSpacing: 12,
-//                   horizontalMargin: 12,
-//                   minWidth: 600,
-//                   columns: [
-//                     DataColumn(label: Text('Time')),
-//                     DataColumn(label: Text('AX')),
-//                     DataColumn(label: Text('AY')),
-//                     DataColumn(label: Text('AZ')),
-//                     DataColumn(label: Text('GX')),
-//                     DataColumn(label: Text('GY')),
-//                     DataColumn(label: Text('GZ')),
-//                     DataColumn(label: Text('ID')),
-//                     DataColumn(label: Text('Side')),
-//                     DataColumn(label: Text('Time Diff')),
-//                   ],
-//                   rows: snapshot.data!.map((sensorData) {
-//                     return DataRow(
-//                       cells: [
-//                         DataCell(Text(sensorData.time.toString())),
-//                         DataCell(Text(sensorData.ax.toString())),
-//                         DataCell(Text(sensorData.ay.toString())),
-//                         DataCell(Text(sensorData.az.toString())),
-//                         DataCell(Text(sensorData.gx.toString())),
-//                         DataCell(Text(sensorData.gy.toString())),
-//                         DataCell(Text(sensorData.gz.toString())),
-//                         DataCell(Text(sensorData.id)),
-//                         DataCell(Text(sensorData.side)),
-//                         DataCell(Text(sensorData.timeDiff.toString())),
-//                       ],
-//                     );
-//                   }).toList(),
-//                 ),
-//               ),
-//             );
-//           }
-//         },
-//       ),
-//     );
-//   }
-// }
+          List<SensorData> sensorDataList = snapshot.data!;
+          List<PlutoRow> loadedRows = sensorDataList.map((sensor) {
+            return PlutoRow(cells: {
+              'id': PlutoCell(value: sensor.id),
+              'side': PlutoCell(value: sensor.side),
+              'ax': PlutoCell(value: sensor.ax.toStringAsFixed(3)),
+              'ay': PlutoCell(value: sensor.ay.toStringAsFixed(3)),
+              'az': PlutoCell(value: sensor.az.toStringAsFixed(3)),
+              'gx': PlutoCell(value: sensor.gx.toStringAsFixed(3)),
+              'gy': PlutoCell(value: sensor.gy.toStringAsFixed(3)),
+              'gz': PlutoCell(value: sensor.gz.toStringAsFixed(3)),
+              'time': PlutoCell(value: sensor.formattedTime),
+              'time_diff': PlutoCell(value: sensor.timeDiff.toStringAsFixed(3)),
+            });
+          }).toList();
+
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlutoGrid(
+              columns: [
+                PlutoColumn(title: 'ID', field: 'id', type: PlutoColumnType.text(), width: 100),
+                PlutoColumn(title: 'Side', field: 'side', type: PlutoColumnType.text(), width: 70),
+                PlutoColumn(
+                    title: 'Ax',
+                    field: 'ax',
+                    type: PlutoColumnType.number(format: '#,##0.000'),
+                    width: 80),
+                PlutoColumn(
+                    title: 'Ay',
+                    field: 'ay',
+                    type: PlutoColumnType.number(format: '#,##0.000'),
+                    width: 80),
+                PlutoColumn(
+                    title: 'Az',
+                    field: 'az',
+                    type: PlutoColumnType.number(format: '#,##0.000'),
+                    width: 80),
+                PlutoColumn(
+                    title: 'Gx',
+                    field: 'gx',
+                    type: PlutoColumnType.number(format: '#,##0.000'),
+                    width: 80),
+                PlutoColumn(
+                    title: 'Gy',
+                    field: 'gy',
+                    type: PlutoColumnType.number(format: '#,##0.000'),
+                    width: 80),
+                PlutoColumn(
+                    title: 'Gz',
+                    field: 'gz',
+                    type: PlutoColumnType.number(format: '#,##0.000'),
+                    width: 80),
+                PlutoColumn(title: 'Time', field: 'time', type: PlutoColumnType.text(), width: 190),
+                PlutoColumn(
+                    title: 'Time Diff (ms)',
+                    field: 'time_diff',
+                    type: PlutoColumnType.number(format: '#,##0.000'),
+                    width: 130),
+              ],
+              rows: loadedRows,
+              onLoaded: (PlutoGridOnLoadedEvent event) {},
+              onChanged: (PlutoGridOnChangedEvent event) {},
+              configuration: PlutoGridConfiguration(
+    style: PlutoGridStyleConfig(
+      // Background Color
+      gridBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      
+      // Table Borders
+      borderColor: Theme.of(context).dividerColor, 
+      
+      // Row Color
+      rowColor: Theme.of(context).cardColor,
+      activatedColor: Colors.black,
+      menuBackgroundColor: Colors.black,
+      
+      // Column and Cell Text Color
+      columnTextStyle: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
+      cellTextStyle: const TextStyle(color: Colors.lightGreenAccent),
+      iconColor: Colors.lightGreenAccent,
+    ),
+  ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}

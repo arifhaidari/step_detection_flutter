@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:step_detection_flutter/screens/measurement_list_screen.dart';
+import 'package:step_detection_flutter/screens/raw_data_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -44,15 +45,15 @@ class HomeScreen extends StatelessWidget {
                     context, MaterialPageRoute(builder: (context) => MeasurementListScreen()));
               },
             ),
-            //  const SizedBox(height: 20),
-            // _buildButton(
-            //   context,
-            //   icon: LucideIcons.server,
-            //   label: "Raw Data",
-            //   onPressed: () {
-            //     // Navigator.push(context, MaterialPageRoute(builder: (context) => SensorDataScreen()));
-            //   },
-            // ),
+             const SizedBox(height: 20),
+            _buildButton(
+              context,
+              icon: LucideIcons.table,
+              label: "Data Table",
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SensorDataTable()));
+              },
+            ),
             const SizedBox(height: 20),
             _buildButton(
               context,
