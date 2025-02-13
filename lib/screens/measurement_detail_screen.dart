@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // For loading JSON from assets
-import 'package:fl_chart/fl_chart.dart'; // For the chart
-import 'package:step_detection_flutter/widgets/down_sample_step_count.dart';
-import 'dart:convert'; // For JSON decoding
-import '../data/measurement_model.dart';
-import '../data/sensor_data_model.dart';
-import '../widgets/down_sampling_sensor_data.dart';
+import 'z_screen_imports.dart';
 
 class MeasurementDetailScreen extends StatefulWidget {
   final Measurement measurement;
@@ -79,7 +72,9 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                     });
                   },
                 ),
-                DropdownButton<int>(
+               Row(children: [
+                const Text('Zoom: '),
+                 DropdownButton<int>(
                   value: selectedDataPoints,
                   items: [15, 20, 25, 30]
                       .map((points) =>
@@ -89,6 +84,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                     setState(() => selectedDataPoints = value!);
                   },
                 ),
+               ],)
               ],
             ),
             const SizedBox(height: 20),
@@ -96,7 +92,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
             // Line Chart
             SizedBox(
               height: 280,
-              width: double.infinity, // Full width
+              width: double.infinity, 
               child: LineChart(
                 LineChartData(
                   gridData: FlGridData(show: true),
@@ -110,7 +106,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                           LineChartBarData(
                             spots: downsampleStepCounts(sensorData, selectedDataPoints)[0],
                             isCurved: true,
-                            color: Colors.orange, // Color for the step count line
+                            color: Colors.orange, 
                           ),
                         ]
                       : [
@@ -155,11 +151,11 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.lightGreenAccent)),
+          child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Palette.dataTableText)),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(value, style: const TextStyle(fontSize: 14, color: Colors.lightGreenAccent),),
+          child: Text(value, style: const TextStyle(fontSize: 14, color: Palette.dataTableText),),
         ),
       ],
     );

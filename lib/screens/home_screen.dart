@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
-import 'package:step_detection_flutter/screens/measurement_list_screen.dart';
-import 'package:step_detection_flutter/screens/raw_data_screen.dart';
+import 'z_screen_imports.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -84,7 +81,7 @@ class HomeScreen extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        primary: Colors.blueAccent,
+        // primary: Colors.blueAccent,
       ),
       onPressed: onPressed,
       icon: Icon(icon, size: 24, color: Colors.white),

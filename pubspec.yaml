@@ -31,6 +31,7 @@ dependencies:
     sdk: flutter
   lucide_icons:
   fl_chart:
+  intl:
   pluto_grid: ^7.0.2
 
   # The following adds the Cupertino Icons font to your application.

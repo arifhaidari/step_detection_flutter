@@ -1,5 +1,4 @@
-import 'package:fl_chart/fl_chart.dart';
-import 'package:step_detection_flutter/data/sensor_data_model.dart';
+import 'z_widgets_imports.dart';
 
 
 List<FlSpot> downsampleData(List<SensorData> data, String sensorColumn, int numberOfPoints) {

@@ -1,6 +1,4 @@
- import 'package:fl_chart/fl_chart.dart';
-import 'package:step_detection_flutter/data/sensor_data_model.dart';
-import 'package:step_detection_flutter/utils/step_counter.dart';
+import 'z_widgets_imports.dart';
 
 List<List<FlSpot>> downsampleStepCounts(List<SensorData> data, int numberOfPoints) {
     final int dataSize = data.length;

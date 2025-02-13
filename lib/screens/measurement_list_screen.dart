@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import '../data/data_provider.dart';
-import '../data/measurement_model.dart';
-import '../screens/measurement_detail_screen.dart'; // Screen for showing measurement details
+import 'z_screen_imports.dart';
 
 class MeasurementListScreen extends StatelessWidget {
   final DataProvider dataProvider = DataProvider();
@@ -41,7 +38,6 @@ class MeasurementListScreen extends StatelessWidget {
                   ),
                   child: ListTile(
                     onTap: () {
-                      // Navigate to the details screen when tapped
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -51,10 +47,6 @@ class MeasurementListScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    // leading: CircleAvatar(
-                    //   backgroundColor: Colors.teal,
-                    //   child: Icon(Icons.history, color: Colors.white),
-                    // ),
                     title: Text(
                       measurement.id,
                       style: const TextStyle(
@@ -66,11 +58,11 @@ class MeasurementListScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
                         'Start: ${measurement.formattedStartTime}\nEnd: ${measurement.formattedEndTime}',
-                        style: const TextStyle(fontSize: 15, color: Colors.lightGreenAccent),
+                        style: const TextStyle(fontSize: 15, color: Palette.dataTableText),
                       ),
                     ),
                     trailing: SizedBox(
-                      width: 120, // Set a fixed width for trailing
+                      width: 120, 
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,14 +71,14 @@ class MeasurementListScreen extends StatelessWidget {
                             children: [
                               const Icon(Icons.directions_walk, color: Colors.green, size: 20),
                               const SizedBox(width: 5),
-                              Text('Left: ${measurement.leftSteps}'),
+                              Text('Left: ${measurement.leftSteps}', style: const TextStyle(fontSize: 15),),
                             ],
                           ),
                           Row(
                             children: [
                               const Icon(Icons.directions_walk, color: Colors.blue, size: 20),
                               const SizedBox(width: 5),
-                              Text('Right: ${measurement.rightSteps}', style: const TextStyle(fontSize: 14),),
+                              Text('Right: ${measurement.rightSteps}', style: const TextStyle(fontSize: 15),),
                             ],
                           ),
                         ],

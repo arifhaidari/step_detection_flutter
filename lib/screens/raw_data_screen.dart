@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:pluto_grid/pluto_grid.dart';
-import 'package:step_detection_flutter/data/sensor_data_model.dart';
-import 'package:step_detection_flutter/utils/json_loader.dart';
+import 'z_screen_imports.dart';
 
 class SensorDataTable extends StatefulWidget {
+  const SensorDataTable({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _SensorDataTableState createState() => _SensorDataTableState();
 }
 
@@ -106,8 +106,8 @@ class _SensorDataTableState extends State<SensorDataTable> {
       
       // Column and Cell Text Color
       columnTextStyle: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
-      cellTextStyle: const TextStyle(color: Colors.lightGreenAccent),
-      iconColor: Colors.lightGreenAccent,
+      cellTextStyle: const TextStyle(color: Palette.dataTableText),
+      iconColor: Palette.dataTableText,
     ),
   ),
             ),
