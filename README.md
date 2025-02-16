@@ -2,7 +2,7 @@
 
 ## Overview
 
-This Flutter app is designed to detect (predict) and count steps using accelerometer data. The app also visualizes the sensor data in a readable format by applying data downsampling techniques.
+This Flutter app is designed to detect (predict) and count steps using sensor data. The app also visualizes the sensor data in a readable format by applying data downsampling techniques.
 
 ## Features
 
