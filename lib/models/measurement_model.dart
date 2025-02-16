@@ -5,6 +5,7 @@ class Measurement {
   final int leftSteps;
   final int rightSteps;
   late final Duration duration;
+  final String? timestamp;
 
   Measurement({
     required this.id,
@@ -12,6 +13,7 @@ class Measurement {
     required this.endTime,
     required this.leftSteps,
     required this.rightSteps,
+    this.timestamp,
   }) {
     duration = endTime.difference(startTime); // Calculate duration
   }
@@ -25,6 +27,7 @@ class Measurement {
       endTime: DateTime.parse(json['end_time']),
       leftSteps: json['left_steps'],
       rightSteps: json['right_steps'],
+      timestamp: json['timestamp'],
     );
   }
 

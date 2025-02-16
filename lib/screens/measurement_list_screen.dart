@@ -28,13 +28,14 @@ class MeasurementListScreen extends StatelessWidget {
             final measurements = snapshot.data!;
             return ListView.builder(
               itemCount: measurements.length,
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
               itemBuilder: (context, index) {
                 final measurement = measurements[index];
                 return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                  elevation: 6,
+                  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+                  elevation: 4,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: ListTile(
                     onTap: () {

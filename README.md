@@ -2,13 +2,13 @@
 
 ## Overview
 
-This Flutter app is designed to detect and count steps using accelerometer data. The app also visualizes the sensor data in a readable format by applying data downsampling techniques.
+This Flutter app is designed to detect (predict) and count steps using accelerometer data. The app also visualizes the sensor data in a readable format by applying data downsampling techniques.
 
 ## Features
 
 - **Step Counting**: Detects steps by identifying spikes in the accelerometer's Z-axis (az) based on a threshold.
 - **Data Visualization**: Downsamples sensor data by segmenting it into equal parts and averaging values for improved readability.
-- **Lightweight Backend Data**: Uses a small subset of the original dataset to keep the app lightweight, as the full data science model has not been deployed via an API.
+- **Lightweight Backend Data**: Uses a small subset of the original dataset (JSON files) to keep the app lightweight, also the API (the data science project) is integrated into backend where user can do the prediction and also list out the predictions.
 - **Flutter-Based UI**: Interactive charts and tables to display step counts and sensor data trends.
 
 ## Approach & Data Visualization
@@ -26,8 +26,9 @@ The app utilizes precomputed step detection data:
 
 - `calculated_steps.json`
 - `input_data.json`
+- API calls (data come from serer)
 
-Since the full dataset is large, only a small subset is included to maintain simplicity and efficiency.
+Since the full dataset is large, only a small subset (JSON Files) is included to maintain simplicity and efficiency.
 
 ## Challenges :)
 
@@ -36,7 +37,7 @@ Since the full dataset is large, only a small subset is included to maintain sim
 3. **Step Counter Logic**: What’s easy in Python (import a package and call a function) turned into a monster of a task in Flutter. Appreciation for Python just skyrocketed! 🚀
    - Check out the step counting logic: [step_counter.dart](https://github.com/arifhaidari/step_detection_flutter/blob/main/lib/utils/step_counter.dart)
 
-For more developer struggles, visit the data science (part of this) project: [Step Detection Data Science](https://github.com/arifhaidari/step_detection_data_science/tree/main)
+For more developer insights, visit the data science (part of this) project: [Step Detection Data Science](https://github.com/arifhaidari/step_detection_data_science/tree/main)
 
 ## Data Science Component
 
@@ -51,7 +52,7 @@ The core logic and experiments for step detection are documented in the data sci
 ## Installation
 
 You can install the app by downloading the APK:
-[📥 Download APK](https://github.com/arifhaidari/step_detection_flutter/tree/main/apk) (Located in `build/app/outputs/flutter-apk/`)
+[📥 Download APK](https://github.com/arifhaidari/step_detection_flutter/tree/main/apk)
 
 ---
 

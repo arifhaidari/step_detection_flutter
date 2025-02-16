@@ -22,3 +22,4 @@ o Implement a filter/search feature to find specific measurements. o Export resu
 
 Additional notes:
 pluto_grid: ^7.0.2
+flutter.compileSdkVersion
