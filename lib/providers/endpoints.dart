@@ -22,4 +22,4 @@ const String MEDIA_LINK_NO_SLASH = "http://10.0.2.2:8000";
 const String LIVE_SOCKET = 'ws://127.0.0.1:8000/' + "ws/live/"; //live socket
 
 // Prediction
-const String PREDICTION = "${BASE_URL}predict/";
+// const String PREDICTION = "${BASE_URL}predict/";

@@ -2,7 +2,6 @@ import 'z_providers_imports.dart';
 
 class ApiService {
   final Dio _dio = Dio(BaseOptions(baseUrl: 'http://10.0.2.2:8000/api'));
-  // final Dio _dio = Dio(BaseOptions(baseUrl: 'http://127.0.0.1:8000/api'));
 
   // POST: Upload JSON files from mobile storage
   Future<List<Measurement>> uploadPredictions() async {
@@ -53,6 +52,39 @@ class ApiService {
       return response.data['message'];
     } catch (e) {
       throw Exception('Failed to delete prediction: $e');
+    }
+  }
+
+  Future<bool> checkInternetConnection() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('Internet connection is active');
+        return true;
+      }
+    } catch (_) {
+      print('No internet connection');
+      return false;
+    }
+    return false;
+  }
+
+  Future<bool> checkApiStatus() async {
+    final dio = Dio();
+    const String apiUrl = 'http://10.0.2.2:8000/'; // Change if needed
+
+    try {
+      final response = await dio.get(apiUrl);
+      if (response.statusCode == 200) {
+        print('API is working');
+        return true;
+      } else {
+        print('API responded with status: ${response.statusCode}');
+        return false;
+      }
+    } catch (e) {
+      print('API is not reachable: $e');
+      return false;
     }
   }
 }

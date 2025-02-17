@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'z_screen_imports.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -5,7 +7,7 @@ class HomeScreen extends StatelessWidget {
 
   void showNotImplementedToast(BuildContext context) {
     const snackBar = SnackBar(
-      content: Text("This feature is not implemented yet!"),
+      content: Text("API is not up and running!!!"),
       duration: Duration(seconds: 2),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -55,15 +57,23 @@ class HomeScreen extends StatelessWidget {
                   }),
                   _buildSquareButton(context, LucideIcons.table, "Sensor Data", () {
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => SensorDataTable()));
+                        context, MaterialPageRoute(builder: (context) => const SensorDataTable()));
                   }),
-                  _buildSquareButton(context, LucideIcons.server, "API Server", () {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => PredictionTableScreen()));
+                  _buildSquareButton(context, LucideIcons.server, "API Server", () async {
+                    if (await ApiService().checkApiStatus()) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => const PredictionTableScreen()));
+                    } else {
+                      showNotImplementedToast(context);
+                    }
                   }),
-                  _buildSquareButton(context, LucideIcons.brain, "Prediction", () {
-                    Navigator.push(
+                  _buildSquareButton(context, LucideIcons.brain, "Prediction", () async {
+                    if(await ApiService().checkApiStatus()) {
+                      Navigator.push(
                         context, MaterialPageRoute(builder: (context) => PredictionScreen()));
+                    } else {
+                      showNotImplementedToast(context);
+                    }
                   }),
                 ],
               ),
