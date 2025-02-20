@@ -1,7 +1,7 @@
 import 'z_providers_imports.dart';
 
 class ApiService {
-  final Dio _dio = Dio(BaseOptions(baseUrl: 'http://10.0.2.2:8000/api'));
+  final Dio _dio = Dio(BaseOptions(baseUrl: BASE_URL));
 
   // POST: Upload JSON files from mobile storage
   Future<List<Measurement>> uploadPredictions() async {
@@ -59,11 +59,9 @@ class ApiService {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('Internet connection is active');
         return true;
       }
     } catch (_) {
-      print('No internet connection');
       return false;
     }
     return false;
@@ -76,14 +74,11 @@ class ApiService {
     try {
       final response = await dio.get(apiUrl);
       if (response.statusCode == 200) {
-        print('API is working');
         return true;
       } else {
-        print('API responded with status: ${response.statusCode}');
         return false;
       }
     } catch (e) {
-      print('API is not reachable: $e');
       return false;
     }
   }

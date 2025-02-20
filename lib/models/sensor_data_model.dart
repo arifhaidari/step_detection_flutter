@@ -20,8 +20,7 @@ class SensorData {
     required this.time,
   });
 
-  // whenever in th UI i use the data then I use PlutoCell(value: sensor.formattedTime),
-  // instead of sensor.time
+  // format the time
   String get formattedTime => DateFormat('yyyy-MM-dd HH:mm:ss.SSS').format(time);
 
   factory SensorData.fromJson(Map<String, dynamic> json) {

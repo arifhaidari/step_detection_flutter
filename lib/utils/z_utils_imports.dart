@@ -6,5 +6,9 @@ export 'dart:convert';
 export 'package:flutter/services.dart' show rootBundle;
 // step counter 
 export 'dart:math';
+// export to csv and json
+export 'dart:io';
+export 'package:file_picker/file_picker.dart';
+export 'package:permission_handler/permission_handler.dart';
 
 

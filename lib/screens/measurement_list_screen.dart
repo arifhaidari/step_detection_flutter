@@ -1,13 +1,13 @@
 import 'z_screen_imports.dart';
 
 class MeasurementListScreen extends StatelessWidget {
-  final DataProvider dataProvider = DataProvider();
+  // final DataProvider dataProvider = DataProvider();
 
-  MeasurementListScreen({super.key});
+  // MeasurementListScreen({super.key});
 
-  Future<List<Measurement>> fetchMeasurements() async {
-    return await dataProvider.getMeasurements();
-  }
+  // Future<List<Measurement>> fetchMeasurements() async {
+  //   return await dataProvider.getMeasurements();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class MeasurementListScreen extends StatelessWidget {
         title: const Text('Measurements'),
       ),
       body: FutureBuilder<List<Measurement>>(
-        future: fetchMeasurements(),
+        future: DataProvider().getMeasurements(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

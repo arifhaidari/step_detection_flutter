@@ -22,12 +22,11 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
   }
 
   Future<void> fetchSensorData() async {
-    final String response = await rootBundle.loadString('assets/data/input_data.json');
-    final List<dynamic> data = json.decode(response);
+    final List<SensorData> data = await DataProvider().getSensorData();
 
     setState(() {
       sensorData = data
-          .map((entry) => SensorData.fromJson(entry))
+          .map((entry) => entry)
           .where((sensorData) => sensorData.id == widget.measurement.id)
           .toList();
     });
@@ -72,19 +71,21 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                     });
                   },
                 ),
-               Row(children: [
-                const Text('Zoom: '),
-                 DropdownButton<int>(
-                  value: selectedDataPoints,
-                  items: [15, 20, 25, 30]
-                      .map((points) =>
-                          DropdownMenuItem(value: points, child: Text(points.toString())))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() => selectedDataPoints = value!);
-                  },
-                ),
-               ],)
+                Row(
+                  children: [
+                    const Text('Zoom: '),
+                    DropdownButton<int>(
+                      value: selectedDataPoints,
+                      items: [15, 20, 25, 30]
+                          .map((points) =>
+                              DropdownMenuItem(value: points, child: Text(points.toString())))
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() => selectedDataPoints = value!);
+                      },
+                    ),
+                  ],
+                )
               ],
             ),
             const SizedBox(height: 20),
@@ -92,7 +93,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
             // Line Chart
             SizedBox(
               height: 280,
-              width: double.infinity, 
+              width: double.infinity,
               child: LineChart(
                 LineChartData(
                   gridData: FlGridData(show: true),
@@ -106,7 +107,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                           LineChartBarData(
                             spots: downsampleStepCounts(sensorData, selectedDataPoints)[0],
                             isCurved: true,
-                            color: Colors.orange, 
+                            color: Colors.orange,
                           ),
                         ]
                       : [
@@ -151,11 +152,16 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Palette.dataTableText)),
+          child: Text(label,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, fontSize: 14, color: Palette.dataTableText)),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(value, style: const TextStyle(fontSize: 14, color: Palette.dataTableText),),
+          child: Text(
+            value,
+            style: const TextStyle(fontSize: 14, color: Palette.dataTableText),
+          ),
         ),
       ],
     );

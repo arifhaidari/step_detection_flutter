@@ -26,9 +26,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   future: _futureMeasurements,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     } else if (snapshot.hasError) {
-                      return Text("Error: ${snapshot.error}", style: TextStyle(color: Colors.red));
+                      return Text("Error: ${snapshot.error}", style: const TextStyle(color: Colors.red));
                     } else if (snapshot.hasData) {
                       return Expanded(
                         child: ListView.builder(
@@ -36,7 +36,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                           itemBuilder: (context, index) {
                             final measurement = snapshot.data![index];
                             return Card(
-                              margin: EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(10),
                               child: ListTile(
                                 title: Text(
                                   "ID: ${measurement.id}",
@@ -55,7 +55,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                         ),
                       );
                     } else {
-                      return Text("No data available",
+                      return const Text("No data available",
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold));
                     }
                   },
@@ -64,7 +64,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(14),
+            padding: const EdgeInsets.all(14),
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
@@ -72,7 +72,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   _futureMeasurements = ApiService().uploadPredictions();
                 });
               },
-              child: Text("Choose File", style: TextStyle(fontSize: 18)),
+              child: const Text("Choose File", style: TextStyle(fontSize: 18)),
             ),
           ),
         ],

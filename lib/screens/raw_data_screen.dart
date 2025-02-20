@@ -9,8 +9,6 @@ class SensorDataTable extends StatefulWidget {
 }
 
 class _SensorDataTableState extends State<SensorDataTable> {
-  // List<PlutoColumn> columns = [];
-  // List<PlutoRow> rows = [];
 
   @override
   Widget build(BuildContext context) {
