@@ -1,19 +1,66 @@
 import 'z_screen_imports.dart';
 
-class MeasurementListScreen extends StatelessWidget {
-  // final DataProvider dataProvider = DataProvider();
+class MeasurementListScreen extends StatefulWidget {
 
-  // MeasurementListScreen({super.key});
 
-  // Future<List<Measurement>> fetchMeasurements() async {
-  //   return await dataProvider.getMeasurements();
-  // }
+  MeasurementListScreen({super.key});
+
+  @override
+  State<MeasurementListScreen> createState() => _MeasurementListScreenState();
+}
+
+class _MeasurementListScreenState extends State<MeasurementListScreen> {
+  List<Measurement> exportPrediction = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Measurements'),
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (value) async {
+              // Show export options
+              if (value == 'export_json') {
+                exportData('json', exportPrediction).then((value) {
+                  if (value) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(content: Text('Exported to JSON')));
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(content: Text('Canceled')));
+                  }
+                });
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(const SnackBar(content: Text('Exporting to JSON...')));
+              } else if (value == 'export_csv') {
+                exportData('csv', exportPrediction).then((value) {
+                  if (value) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(content: Text('Exported to CSV')));
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(content: Text('Canceled')));
+                  }
+                });
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(const SnackBar(content: Text('Exporting to CSV...')));
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                const PopupMenuItem<String>(
+                  value: 'export_json',
+                  child: Text('Export to JSON'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'export_csv',
+                  child: Text('Export to CSV'),
+                ),
+              ];
+            },
+          ),
+        ],
       ),
       body: FutureBuilder<List<Measurement>>(
         future: DataProvider().getMeasurements(),
@@ -26,6 +73,7 @@ class MeasurementListScreen extends StatelessWidget {
             return const Center(child: Text('No measurements available.'));
           } else {
             final measurements = snapshot.data!;
+            exportPrediction = measurements;
             return ListView.builder(
               itemCount: measurements.length,
               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
@@ -63,7 +111,7 @@ class MeasurementListScreen extends StatelessWidget {
                       ),
                     ),
                     trailing: SizedBox(
-                      width: 120, 
+                      width: 120,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,14 +120,20 @@ class MeasurementListScreen extends StatelessWidget {
                             children: [
                               const Icon(Icons.directions_walk, color: Colors.green, size: 20),
                               const SizedBox(width: 5),
-                              Text('Left: ${measurement.leftSteps}', style: const TextStyle(fontSize: 15),),
+                              Text(
+                                'Left: ${measurement.leftSteps}',
+                                style: const TextStyle(fontSize: 15),
+                              ),
                             ],
                           ),
                           Row(
                             children: [
                               const Icon(Icons.directions_walk, color: Colors.blue, size: 20),
                               const SizedBox(width: 5),
-                              Text('Right: ${measurement.rightSteps}', style: const TextStyle(fontSize: 15),),
+                              Text(
+                                'Right: ${measurement.rightSteps}',
+                                style: const TextStyle(fontSize: 15),
+                              ),
                             ],
                           ),
                         ],

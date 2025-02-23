@@ -1,37 +1,47 @@
 [
-     {
-          "id": "033nuFnKoOjj4NeIt9FS",
-          "start_time": "2024-06-14T12:57:50",
-          "end_time": "2024-06-14T12:58:02",
-          "left_steps": 102,
-          "right_steps": 110
-      },
-      {
-          "id": "0373xrf1eaJoc8IcE6Gc",
-          "start_time": "2024-06-14T09:58:41",
-          "end_time": "2024-06-14T09:59:01",
-          "left_steps": 197,
-          "right_steps": 202
-      },
-      {
-          "id": "04SwmTFshylAIDUNCYTh",
-          "start_time": "2024-06-14T10:06:32",
-          "end_time": "2024-06-14T10:06:49",
-          "left_steps": 89,
-          "right_steps": 95
-      },
-      {
-          "id": "0AxduuyH7QvfV841ANdD",
-          "start_time": "2024-06-14T08:14:32",
-          "end_time": "2024-06-14T08:14:46",
-          "left_steps": 106,
-          "right_steps": 114
-      },
-      {
-          "id": "0bYDrU653eQr2GwcMXXw",
-          "start_time": "2024-06-14T09:31:03",
-          "end_time": "2024-06-14T09:31:17",
-          "left_steps": 114,
-          "right_steps": 123
-      }
+    {
+        "id": "MRBF3DNuWq0zhSXajwPy",
+        "start_time": "2024-06-14T07:19:32.380000",
+        "end_time": "2024-06-14T07:19:44.425000",
+        "left_steps": 6,
+        "right_steps": 6,
+        "session_duration": 12.045,
+        "num_measurements": 9530
+    },
+    {
+        "id": "JTK6RIC3JrwDykp2XERB",
+        "start_time": "2024-06-14T07:21:14.615000",
+        "end_time": "2024-06-14T07:21:26.604000",
+        "left_steps": 5,
+        "right_steps": 5,
+        "session_duration": 11.989,
+        "num_measurements": 9303
+    },
+    {
+        "id": "gFsK9CqVrL25MhFnYSzd",
+        "start_time": "2024-06-14T07:22:18.897000",
+        "end_time": "2024-06-14T07:22:30.938000",
+        "left_steps": 6,
+        "right_steps": 6,
+        "session_duration": 12.041,
+        "num_measurements": 9530
+    },
+    {
+        "id": "CiebYhzPBsVTxlm2R5YC",
+        "start_time": "2024-06-14T07:22:59.098000",
+        "end_time": "2024-06-14T07:23:12.237000",
+        "left_steps": 6,
+        "right_steps": 7,
+        "session_duration": 13.139,
+        "num_measurements": 10438
+    },
+    {
+        "id": "voYtr9vgtLGs0EsIqABv",
+        "start_time": "2024-06-14T07:23:48.653000",
+        "end_time": "2024-06-14T07:24:02.824000",
+        "left_steps": 6,
+        "right_steps": 6,
+        "session_duration": 14.171,
+        "num_measurements": 11119
+    }
 ]

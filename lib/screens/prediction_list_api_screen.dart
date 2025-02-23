@@ -8,55 +8,14 @@ class PredictionTableScreen extends StatefulWidget {
 }
 
 class _PredictionTableScreenState extends State<PredictionTableScreen> {
-  List<Measurement> exportPrediction = [];
+ 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Predictions'),
-        actions: [
-          PopupMenuButton<String>(
-            onSelected: (value) async {
-              // Show export options
-              if (value == 'export_json') {
-                exportData('json', exportPrediction).then((value) {
-                  if (value) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(content: Text('Exported to JSON')));
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Canceled')));
-                  }
-                });
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(const SnackBar(content: Text('Exporting to JSON...')));
-              } else if (value == 'export_csv') {
-                exportData('csv', exportPrediction).then((value) {
-                  if (value) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(content: Text('Exported to CSV')));
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Canceled')));
-                  }
-                });
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(const SnackBar(content: Text('Exporting to CSV...')));
-              }
-            },
-            itemBuilder: (BuildContext context) {
-              return [
-                const PopupMenuItem<String>(
-                  value: 'export_json',
-                  child: Text('Export to JSON'),
-                ),
-                const PopupMenuItem<String>(
-                  value: 'export_csv',
-                  child: Text('Export to CSV'),
-                ),
-              ];
-            },
-          ),
-        ],
+        
       ),
       body: FutureBuilder<List<Measurement>>(
         future: ApiService().getPredictions(),
@@ -72,7 +31,7 @@ class _PredictionTableScreenState extends State<PredictionTableScreen> {
           }
 
           List<Measurement> predictions = snapshot.data!;
-          exportPrediction = predictions;
+          
           List<PlutoRow> loadedRows = predictions.map((prediction) {
             return PlutoRow(cells: {
               'id': PlutoCell(value: prediction.id),

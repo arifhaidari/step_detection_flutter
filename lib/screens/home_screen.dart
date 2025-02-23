@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'z_screen_imports.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -56,21 +54,18 @@ class HomeScreen extends StatelessWidget {
                         context, MaterialPageRoute(builder: (context) => MeasurementListScreen()));
                   }),
                   _buildSquareButton(context, LucideIcons.table, "Sensor Data", () {
+                  
                     Navigator.push(
                         context, MaterialPageRoute(builder: (context) => const SensorDataTable()));
                   }),
-                  _buildSquareButton(context, LucideIcons.server, "API Server", () async {
-                    if (await ApiService().checkApiStatus()) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const PredictionTableScreen()));
-                    } else {
-                      showNotImplementedToast(context);
-                    }
+                  _buildSquareButton(context, LucideIcons.barChartBig, "Analysis", () async {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => const CombinedAnalysisScreen()));
                   }),
                   _buildSquareButton(context, LucideIcons.brain, "Prediction", () async {
-                    if(await ApiService().checkApiStatus()) {
+                    if (await ApiService().checkApiStatus()) {
                       Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => PredictionScreen()));
+                          context, MaterialPageRoute(builder: (context) => PredictionScreen()));
                     } else {
                       showNotImplementedToast(context);
                     }

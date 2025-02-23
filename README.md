@@ -6,7 +6,7 @@ This Flutter app is designed to detect (predict) and count steps using sensor da
 
 ## Features
 
-- **Step Counting**: Detects steps by identifying spikes in the accelerometer's Z-axis (az) based on a threshold.
+- **Step Counting**: Detects steps by identifying spikes in the accelerometer's magnitude based on a threshold.
 - **Data Visualization**: Downsamples sensor data by segmenting it into equal parts and averaging values for improved readability.
 - **Lightweight Backend Data**: Uses a small subset of the original dataset (JSON files) to keep the app lightweight, also the API (the data science project) is integrated into backend where user can do the prediction and also list out the predictions.
 - **Flutter-Based UI**: Interactive charts and tables to display step counts and sensor data trends.
@@ -34,8 +34,7 @@ Since the full dataset is large, only a small subset (JSON Files) is included to
 
 1. **Setting Up the Environment**: Dealing with compatibility issues... Classic Flutter struggles! 🙃
 2. **Package Woes**: Some packages refused to cooperate—especially `data_table_2` and `syncfusion_flutter_datagrid` with different Flutter versions (I must blame my old standard laptop as well 🙃).
-3. **Step Counter Logic**: What’s easy in Python (import a package and call a function) turned into a monster of a task in Flutter. Appreciation for Python just skyrocketed! 🚀
-   - Check out the step counting logic: [step_counter.dart](https://github.com/arifhaidari/step_detection_flutter/blob/main/lib/utils/step_counter.dart)
+3. **Python Equivalent Logic**: What’s easy in Python (import a package and call a function) turned into a monster of a task in Flutter. Appreciation for Python just skyrocketed! 🚀
 
 For more developer insights, visit the data science (part of this) project: [Step Detection Data Science](https://github.com/arifhaidari/step_detection_data_science/tree/main)
 

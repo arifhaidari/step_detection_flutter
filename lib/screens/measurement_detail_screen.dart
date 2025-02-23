@@ -11,7 +11,7 @@ class MeasurementDetailScreen extends StatefulWidget {
 }
 
 class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
-  String selectedSensorType = 'Step Count';
+  String selectedSensorType = 'Accelerometer';
   int selectedDataPoints = 25;
   List<SensorData> sensorData = [];
 
@@ -62,7 +62,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
               children: [
                 DropdownButton<String>(
                   value: selectedSensorType,
-                  items: ['Step Count', 'Accelerometer', 'Gyroscope']
+                  items: ['Accelerometer', 'Gyroscope']
                       .map((type) => DropdownMenuItem(value: type, child: Text(type)))
                       .toList(),
                   onChanged: (value) {
@@ -102,15 +102,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                     bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
                   ),
                   borderData: FlBorderData(show: true),
-                  lineBarsData: selectedSensorType == 'Step Count'
-                      ? [
-                          LineChartBarData(
-                            spots: downsampleStepCounts(sensorData, selectedDataPoints)[0],
-                            isCurved: true,
-                            color: Colors.orange,
-                          ),
-                        ]
-                      : [
+                  lineBarsData: [
                           for (int i = 0; i < 3; i++)
                             LineChartBarData(
                               spots: downsampledSeries[i],
@@ -134,7 +126,7 @@ class _MeasurementDetailScreenState extends State<MeasurementDetailScreen> {
                 _buildTableRow('ID', widget.measurement.id),
                 _buildTableRow('Start Time', widget.measurement.formattedStartTime),
                 _buildTableRow('End Time', widget.measurement.formattedEndTime),
-                _buildTableRow('Duration', widget.measurement.formattedDuration),
+                _buildTableRow('Duration', "${widget.measurement.sessionDuration.toString()} seconds"),
                 _buildTableRow('Left Steps', widget.measurement.leftSteps.toString()),
                 _buildTableRow('Right Steps', widget.measurement.rightSteps.toString()),
                 _buildTableRow('Number of Readings', sensorData.length.toString()),

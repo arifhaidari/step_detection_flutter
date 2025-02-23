@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 class SensorData {
-  final double ax, ay, az, gx, gy, gz;
+  final double ax, ay, az, gx, gy, gz, accMagnitude, gyroMagnitude;
   final String id;
   final String side;
   final double timeDiff;
@@ -18,6 +18,8 @@ class SensorData {
     required this.side,
     required this.timeDiff,
     required this.time,
+    required this.accMagnitude,
+    required this.gyroMagnitude,
   });
 
   // format the time
@@ -33,10 +35,13 @@ class SensorData {
       gz: json['gz'],
       id: json['id'],
       side: json['side'],
-      timeDiff: double.parse(json['time_diff'].toString()), 
+      timeDiff: json['time_diff'] ?? 0.0, 
       time: DateTime.parse(json['time']), 
+      accMagnitude: json['acc_magnitude'],
+      gyroMagnitude: json['gyro_magnitude'],
     );
   }
+
 
   Map<String, dynamic> toJson() {
     return {
@@ -50,6 +55,8 @@ class SensorData {
       'gz': gz,
       'time': formattedTime,
       'time_diff': timeDiff,
+      'acc_magnitude': timeDiff,
+      'gyro_magnitude': timeDiff,
     };
   }
 }
