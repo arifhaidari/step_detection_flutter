@@ -20,6 +20,10 @@ To improve chart readability and manage large amounts of sensor data, the app se
 
 This method ensures a smooth and easily interpretable graphical representation for all users.
 
+## Screenshots
+
+🔗 [See Screenshots](https://github.com/arifhaidari/step_detection_flutter/blob/main/screenshots/screenshot_list.md)
+
 ## Data Used
 
 The app utilizes precomputed step detection data:

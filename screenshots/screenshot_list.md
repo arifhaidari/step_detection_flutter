@@ -14,38 +14,17 @@ In the Measurement Details screen, you can see the prediction details, raw data,
 
 ## Screenshots
 
-<style>
-  .responsive-table {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .responsive-table img {
-    max-width: 100%;
-    height: auto;
-    margin: 5px;
-  }
-  @media (min-width: 600px) {
-    .responsive-table img {
-      width: 48%;
-    }
-  }
-  @media (min-width: 900px) {
-    .responsive-table img {
-      width: 30%;
-    }
-  }
-</style>
-
-<div class="responsive-table">
-  <img src="1.jpg">
-  <img src="2.jpg">
-  <img src="3.jpg">
-  <img src="4.jpg">
-  <img src="5.jpg">
-  <img src="6.png">
-</div>
-
----
+<table>
+  <tr>
+    <td><img src="1.jpg" width="100%"></td>
+    <td><img src="2.jpg" width="100%"></td>
+    <td><img src="3.jpg" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="4.jpg" width="100%"></td>
+    <td><img src="5.jpg" width="100%"></td>
+    <td><img src="6.png" width="100%"></td>
+  </tr>
+</table>
 
 > **Note:** You can install the app: https://github.com/arifhaidari/step_detection_flutter/tree/main/apk
