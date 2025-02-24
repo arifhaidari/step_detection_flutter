@@ -28,7 +28,8 @@ class _PredictionScreenState extends State<PredictionScreen> {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();
                     } else if (snapshot.hasError) {
-                      return Text("Error: ${snapshot.error}", style: const TextStyle(color: Colors.red));
+                      return Text("Error: ${snapshot.error}",
+                          style: const TextStyle(color: Colors.red));
                     } else if (snapshot.hasData) {
                       return Expanded(
                         child: ListView.builder(
@@ -46,7 +47,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                                   ),
                                 ),
                                 subtitle: Text(
-                                    "Start: ${measurement.startTime}\nEnd: ${measurement.endTime}\nLeft Steps: ${measurement.leftSteps}\nRight Steps: ${measurement.rightSteps}",
+                                    "Start: ${measurement.startTime}\nEnd: ${measurement.endTime}\nLeft Steps: ${measurement.leftSteps}\nRight Steps: ${measurement.rightSteps}\nSession Duration: ${measurement.sessionDuration}\nNumber of Readings: ${measurement.numMeasurements}",
                                     style: const TextStyle(
                                         fontSize: 15, color: Palette.dataTableText)),
                               ),

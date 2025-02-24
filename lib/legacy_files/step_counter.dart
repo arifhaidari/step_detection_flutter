@@ -1,4 +1,4 @@
-import 'package:scidart/numdart.dart';
+// import 'package:scidart/numdart.dart';
 import '../utils/z_utils_imports.dart';
 
 // Function to calculate mean and standard deviation
@@ -10,10 +10,10 @@ double calculateMean(List<double> values) {
 // packages used:
 // https://pub.dev/documentation/scidart/latest/
 double calculateStdDev(List<double> values, double mean) {
-  // double sum = values.fold(0, (prev, curr) => prev + pow(curr - mean, 2).toDouble());
-  // return sqrt(sum / values.length);
-  Array arr = Array(values);
-  return standardDeviation(arr);
+  double sum = values.fold(0, (prev, curr) => prev + pow(curr - mean, 2).toDouble());
+  return sqrt(sum / values.length);
+  // Array arr = Array(values);
+  // return standardDeviation(arr);
 }
 
 // Function to find peaks in the sensor data

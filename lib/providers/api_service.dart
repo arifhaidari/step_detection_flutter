@@ -69,7 +69,7 @@ class ApiService {
 
   Future<bool> checkApiStatus() async {
     final dio = Dio();
-    const String apiUrl = 'http://10.0.2.2:8000/'; // Change if needed
+    const String apiUrl = 'http://54.164.146.71:8000'; // Change if needed
 
     try {
       final response = await dio.get(apiUrl);
