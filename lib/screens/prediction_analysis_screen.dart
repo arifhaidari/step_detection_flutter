@@ -45,11 +45,11 @@ class _CombinedAnalysisScreenState extends State<CombinedAnalysisScreen> {
                     children: [
                       StepBarChart(measurements: data),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 25, 20, 35),
+                        padding: const EdgeInsets.fromLTRB(20, 25, 20, 45),
                         child: StepLineChart(measurements: data, isLeftSteps: true),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 25, 20, 35),
+                        padding: const EdgeInsets.fromLTRB(20, 25, 20, 45),
                         child: StepLineChart(measurements: data, isLeftSteps: false),
                       ),
                       Positioned(
